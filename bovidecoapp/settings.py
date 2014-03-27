@@ -22,7 +22,7 @@ SECRET_KEY = secrets.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-DEV = True
+DEV = False
 
 TEMPLATE_DEBUG = True
 
@@ -88,5 +88,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+<<<<<<< Updated upstream
 if not DEV:
     STATIC_ROOT = "/home/wabarr/webapps/bovidecomorph_static/"
+=======
+if DEV:
+    STATIC_ROOT = "/home/wabarr/webapps/bovidecomorph_static/"
+>>>>>>> Stashed changes
