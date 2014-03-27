@@ -22,7 +22,7 @@ SECRET_KEY = secrets.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-DEV = False
+DEV = True
 
 TEMPLATE_DEBUG = True
 
@@ -87,3 +87,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+
+if DEV:
+    STATIC_ROOT = "/home/wabarr/webapps/bovidecomorph_static/"
