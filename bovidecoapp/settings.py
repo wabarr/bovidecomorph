@@ -88,10 +88,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-<<<<<<< Updated upstream
 if not DEV:
     STATIC_ROOT = "/home/wabarr/webapps/bovidecomorph_static/"
-=======
-if DEV:
-    STATIC_ROOT = "/home/wabarr/webapps/bovidecomorph_static/"
->>>>>>> Stashed changes
