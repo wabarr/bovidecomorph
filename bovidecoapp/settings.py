@@ -88,5 +88,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-if DEV:
+if not DEV:
     STATIC_ROOT = "/home/wabarr/webapps/bovidecomorph_static/"
