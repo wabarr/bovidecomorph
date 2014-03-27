@@ -26,7 +26,7 @@ DEV = False
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.wabarr.com']
 
 
 # Application definition
