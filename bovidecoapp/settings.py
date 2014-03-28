@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bovidecoapp',
+    'axes',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -48,6 +49,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'axes.middleware.FailedLoginMiddleware',
 )
 
 ROOT_URLCONF = 'bovidecoapp.urls'
@@ -82,6 +84,7 @@ USE_L10N = True
 
 USE_TZ = True
 
+TEMPLATE_DIRS = [os.path.join(BASE_DIR,'templates')]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
@@ -90,3 +93,7 @@ STATIC_URL = '/static/'
 
 if not DEV:
     STATIC_ROOT = "/home/wabarr/webapps/bovidecomorph_static/"
+
+AXES_COOLOFF_TIME = 1
+AXES_LOCKOUT_TEMPLATE = "login_locked.html"
+AXES_LOCKOUT_URL = "/lockout/"
