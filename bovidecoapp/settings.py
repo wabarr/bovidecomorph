@@ -97,3 +97,7 @@ if not DEV:
 AXES_COOLOFF_TIME = 1
 AXES_LOCKOUT_TEMPLATE = "login_locked.html"
 AXES_LOCKOUT_URL = "/lockout/"
+
+# If True, lock out / log based on an IP address AND a user agent.
+# This means requests from different user agents but from the same IP are treated differently
+AXES_USE_USER_AGENT = True
