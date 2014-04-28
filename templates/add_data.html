@@ -2,8 +2,17 @@
 <html>
 <head>
     <title>Add Data</title>
+    <link rel="stylesheet" href="/static/bovidecoapp/style.css" />
 </head>
 <body>
 <h2>Add Data</h2>
+
+    {% for form in formset %}
+        <form>
+        {{ form }}
+        </form>
+    {% endfor %}
+
+
 </body>
 </html>

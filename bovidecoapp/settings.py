@@ -93,6 +93,8 @@ STATIC_URL = '/static/'
 
 if not DEV:
     STATIC_ROOT = "/home/wabarr/webapps/bovidecomorph_static/"
+else:
+    STATIC_ROOT = "/Users/wab536/Desktop/bovid_static"
 
 AXES_COOLOFF_TIME = 1
 AXES_LOCKOUT_TEMPLATE = "login_locked.html"
