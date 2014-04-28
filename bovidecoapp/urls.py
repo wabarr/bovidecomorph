@@ -8,7 +8,7 @@ urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'bovidecoapp.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
-
+    url(r'add_data/', add_data),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', redirect2admin)
 )

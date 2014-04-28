@@ -22,7 +22,7 @@ SECRET_KEY = secrets.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-DEV = False
+DEV = True
 
 TEMPLATE_DEBUG = True
 
