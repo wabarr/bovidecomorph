@@ -5,14 +5,16 @@
     <link rel="stylesheet" href="/static/bovidecoapp/style.css" />
 </head>
 <body>
-<h2>Add Data</h2>
+<div id="mainframe">
+    <h2>Add Data</h2>
+    <h2>{{ specimen.museum.code }} {{ specimen.collection.code }} {{ specimen.localityNumber }}-{{ specimen.specimenNumber}}{% if specimen.specimenPart %}{{ specimen.specimenPart }}{% endif %}</h2>
+    <h3>{{ specimen.taxon }}</h3>
+        {% for form in formset %}
+            <form>
+            {{ form.as_p }}
+            </form>
+        {% endfor %}
 
-    {% for form in formset %}
-        <form>
-        {{ form }}
-        </form>
-    {% endfor %}
-
-
+</div>
 </body>
 </html>
