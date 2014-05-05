@@ -71,6 +71,10 @@ DATABASES = {
     }
 }
 
+#default URL for user logins (used by @requires_permission() decorator)
+LOGIN_URL = "/admin/"
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
 

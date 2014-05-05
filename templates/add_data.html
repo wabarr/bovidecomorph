@@ -3,18 +3,45 @@
 <head>
     <title>Add Data</title>
     <link rel="stylesheet" href="/static/bovidecoapp/style.css" />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+    <script>
+
+    </script>
 </head>
 <body>
 <div id="mainframe">
     <h2>Add Data</h2>
     <h2>{{ specimen.museum.code }} {{ specimen.collection.code }} {{ specimen.localityNumber }}-{{ specimen.specimenNumber}}{% if specimen.specimenPart %}{{ specimen.specimenPart }}{% endif %}</h2>
     <h3>{{ specimen.taxon }}</h3>
+        <form>
+
         {% for form in formset %}
-            <form>
-            {{ form.as_p }}
-            </form>
+        <div class="form_row">
+            {{ form.as_table }}
+        </div>
+
         {% endfor %}
+        <input type="hidden" value="{{ to_measure }}" id = "measurementIDs">
+        </form>
 
 </div>
 </body>
+
+
+
+<script>
+
+    $( document ).ready(function() {
+        var to_measure = {{ to_measure|safe }}
+        jQuery.each(to_measure, function( key, value) {
+            var selector = "#id_measurement_set-" + key + "-MetricCharacter"
+            $(selector).val(value.id);
+                });
+        $("label").remove();
+        });
+
+
+    </script>
+
+
 </html>

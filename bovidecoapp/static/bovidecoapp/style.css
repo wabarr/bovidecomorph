@@ -14,6 +14,12 @@ form {
     border-radius:5px;
     padding:6px;
     margin:6px;
-    text-align:center;
 }
 
+form select {
+    display:inline;
+}
+
+.form_row {
+    vertical-align:bottom;
+}
