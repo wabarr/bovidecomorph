@@ -18,6 +18,14 @@ def add_data(request, specimenID=None):
     except:
         return HttpResponse("<h2>There is no specimen with ID#" + str(specimenID) + "<br><a href='/admin/bovidecoapp/specimen/add/'>Add A Specimen</a></h2>")
 
+    try:
+        pre_existing_measurements = measurement.objects.filter(specimen__exact=specimenID)
+        if pre_existing_measurements:
+            messages.add_message(request, 30, 'You were redirected to the admin because this specimen already has measurements')
+            return HttpResponseRedirect("/admin/bovidecoapp/specimen/" + str(specimenID))
+    except:
+        pass
+
     to_measure = MetricCharacter.objects.filter(element__exact="Astragalus").values("id")
     QS_count = to_measure.count()
     to_measure = json.dumps(list(to_measure))
