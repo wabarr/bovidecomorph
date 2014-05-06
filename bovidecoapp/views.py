@@ -9,6 +9,7 @@ import json
 
 @permission_required("specimen.can_add")
 def add_data(request, specimenID=None):
+
     if specimenID is None:
         messages.add_message(request, 40, 'Select a specimen to measure')
         return HttpResponseRedirect("/admin/bovidecoapp/specimen/")
@@ -26,7 +27,8 @@ def add_data(request, specimenID=None):
     except:
         pass
 
-    to_measure = MetricCharacter.objects.filter(element__exact="Astragalus").values("id")
+    #to_measure = MetricCharacter.objects.filter(element__exact="Astragalus").values("id")
+    to_measure = MetricCharacter.objects.filter(pk=25).values("id")
     QS_count = to_measure.count()
     to_measure = json.dumps(list(to_measure))
     addDataFormset = inlineformset_factory(specimen, measurement, can_delete = False, extra = QS_count, exclude=("comments",))

@@ -13,15 +13,26 @@
     <h2>Add Data</h2>
     <h2>{{ specimen.museum.code }} {{ specimen.collection.code }} {{ specimen.localityNumber }}-{{ specimen.specimenNumber}}{% if specimen.specimenPart %}{{ specimen.specimenPart }}{% endif %}</h2>
     <h3>{{ specimen.taxon }}</h3>
-        <form>
 
+    {% if messages %}
+        <ul class="messages">
+           {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}><h4 class="customMessage">{{ message }}</h4></li>
+           {% endfor %}
+        </ul>
+     {% endif %}
+
+        <form action="/add_data/{{ specimen.id }}/" method="post">{% csrf_token %}
+        {{ formset.management_form }}
         {% for form in formset %}
         <div class="form_row">
             {{ form.as_table }}
         </div>
 
         {% endfor %}
+
         <input type="hidden" value="{{ to_measure }}" id = "measurementIDs">
+        <input type="submit" value="submit">
         </form>
 
 </div>
