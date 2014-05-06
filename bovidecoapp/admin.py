@@ -22,7 +22,7 @@ class NonMetricCharacterAdmin(admin.ModelAdmin):
 	
 class specimenAdmin(admin.ModelAdmin):
 	#long list display below
-	list_display = ("specimenNumber","specimen_Collection_Information","taxon","anatomicalElement","astragScanned","ASCII_Trim","ROUGHORIENT","ORIENTED","linearMeasurements","description","analyticalUnit","sex",)
+	list_display = ("specimenNumber","display_add_data_link","specimen_Collection_Information","taxon","anatomicalElement","astragScanned","ASCII_Trim","ROUGHORIENT","ORIENTED","linearMeasurements","description","analyticalUnit","sex",)
 	list_editable = ["anatomicalElement","astragScanned","ASCII_Trim","ROUGHORIENT","ORIENTED","linearMeasurements","sex","description"]
 
 		

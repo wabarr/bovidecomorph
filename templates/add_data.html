@@ -24,8 +24,11 @@
 
         <form action="/add_data/{{ specimen.id }}/" method="post">{% csrf_token %}
         {{ formset.management_form }}
+
         {% for form in formset %}
+
         <div class="form_row">
+            {{ form.errors.value }}
             {{ form.as_table }}
         </div>
 

@@ -1,7 +1,7 @@
 #mainframe {
     margin-left:auto;
     margin-right:auto;
-    width:30%;
+    width:50%;
     background-color:#F2F2F2;
     border-radius:20px;
     padding:20px;
@@ -16,10 +16,24 @@ form {
     margin:6px;
 }
 
-form select {
-    display:inline;
+
+.messages li {
+    list-style-type:none;
 }
 
 .form_row {
-    vertical-align:bottom;
+    display:block;
+}
+
+
+
+ul.errorlist, ul.errorlist li{
+    display:inline-block;
+}
+
+.errorlist, .customMessage {
+    background:#FFFF99;
+    border-width:1px;
+    border-style:solid;
+    text-align:center;
 }

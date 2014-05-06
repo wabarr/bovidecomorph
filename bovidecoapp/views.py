@@ -42,6 +42,9 @@ def add_data(request, specimenID=None):
             return HttpResponseRedirect('/add_data/') # Redirect after POST
         else:
             messages.add_message(request, messages.INFO, 'Please correct the errors below.')
+            return render_to_response("add_data.html",
+                            {"formset":formset, "specimen":theSpecimen, "to_measure":to_measure},
+                            context_instance = RequestContext(request))
 
 
     return render_to_response("add_data.html",
