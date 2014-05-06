@@ -27,14 +27,15 @@ def add_data(request, specimenID=None):
     except:
         pass
 
-    #to_measure = MetricCharacter.objects.filter(element__exact="Astragalus").values("id")
-    to_measure = MetricCharacter.objects.filter(pk=25).values("id")
+    to_measure = MetricCharacter.objects.filter(element__exact="Astragalus").values("id")
+    #to_measure = MetricCharacter.objects.filter(pk=25).values("id")
     QS_count = to_measure.count()
     to_measure = json.dumps(list(to_measure))
     addDataFormset = inlineformset_factory(specimen, measurement, can_delete = False, extra = QS_count, exclude=("comments",))
+    formset_bound_to_instance = addDataFormset(instance = theSpecimen)
 
     if request.method == 'POST': # If the form has been submitted...
-        formset = addDataFormset(request.POST)# A form bound to the POST data
+        formset = addDataFormset(instance = theSpecimen, data = request.POST)# A form bound to the POST data
         if formset.is_valid():
             formset.save()
             messages.add_message(request, messages.INFO, 'Success!.')
@@ -44,7 +45,7 @@ def add_data(request, specimenID=None):
 
 
     return render_to_response("add_data.html",
-                            {"formset":addDataFormset, "specimen":theSpecimen, "to_measure":to_measure},
+                            {"formset":formset_bound_to_instance, "specimen":theSpecimen, "to_measure":to_measure},
                             context_instance = RequestContext(request)
     )
 
