@@ -233,7 +233,7 @@ class MetricCharacter(models.Model):
 
 	class Meta:
 		db_table = 'MetricCharacter'
-		ordering = ['code']
+		ordering = ['element','code']
 
 class measurement(models.Model):
 	MetricCharacter = models.ForeignKey(MetricCharacter)
