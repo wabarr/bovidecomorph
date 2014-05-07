@@ -11,8 +11,8 @@ class observationInline(admin.TabularInline):
 
 
 class MetricCharacterAdmin(admin.ModelAdmin):
-	list_display = ("code","element","name","method","ref")
-	list_filter = ['element','method','ref']
+	list_display = ("code","element","name","method","ref","active")
+	list_filter = ['element','method','ref','active']
 	search_fields = ['name']
 	
 class NonMetricCharacterAdmin(admin.ModelAdmin):

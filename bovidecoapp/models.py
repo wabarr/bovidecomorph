@@ -221,19 +221,23 @@ METHOD_CHOICES = (
 
 
 class MetricCharacter(models.Model):
-	element = models.CharField(max_length = 25, choices = ELEMENT_CHOICES, default = "Astragalus")
-	code = models.CharField(max_length = 10, unique = "TRUE")
-	name = models.CharField(max_length = 255)
-	description = models.CharField(max_length = 500)
-	method = models.CharField(max_length = 20, choices = METHOD_CHOICES)
-	ref = models.ForeignKey(reference)
+    element = models.CharField(max_length=25, choices=ELEMENT_CHOICES, default="Astragalus")
+    code = models.CharField(max_length=10, unique="TRUE")
+    name = models.CharField(max_length=255)
+    description = models.CharField(max_length=500)
+    method = models.CharField(max_length=20, choices=METHOD_CHOICES)
+    ref = models.ForeignKey(reference)
+    active = models.BooleanField(help_text="Whether this measurement is currently being used")
 
-	def __unicode__(self):
-		return self.code
 
-	class Meta:
-		db_table = 'MetricCharacter'
-		ordering = ['element','code']
+    def __unicode__(self):
+        return self.code
+
+
+    class Meta:
+        db_table = 'MetricCharacter'
+        ordering = ['element', 'code']
+
 
 class measurement(models.Model):
 	MetricCharacter = models.ForeignKey(MetricCharacter)
