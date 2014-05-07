@@ -198,6 +198,7 @@ class specimen(models.Model):
 ##Choices for upcoming character class                                
 ELEMENT_CHOICES = (
         ('Astragalus','Astragalus'),
+        ('Calcaneus', 'Calcaneus'),
         ("Distal Femur","Distal Femur"),
         ("Femur","Femur"),
         ("Metacarpal","Metacarpal"),
