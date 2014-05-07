@@ -27,7 +27,7 @@ def add_data(request, specimenID=None):
     except:
         pass
 
-    to_measure = MetricCharacter.objects.filter(element__exact="Astragalus").values("id")
+    to_measure = MetricCharacter.objects.filter(element__exact="Calcaneus", active__exact=True).values("id")
     #to_measure = MetricCharacter.objects.filter(pk=25).values("id")
     QS_count = to_measure.count()
     to_measure = json.dumps(list(to_measure))
