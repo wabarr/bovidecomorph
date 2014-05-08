@@ -145,6 +145,7 @@ anatomicalElementChoices = (
 	("M3","M3"),
 	("unspecifiedMolar","unspecifiedMolar"),
 	("astragalus","astragalus"),
+	("calcaneus", "calcaneus"),
 	("skeleton","skeleton"),
 	("mandible","mandible"),
 	("maxilla","maxilla"),
