@@ -20,7 +20,7 @@ def add_data(request, specimenID=None):
         return HttpResponse("<h2>There is no specimen with ID#" + str(specimenID) + "<br><a href='/admin/bovidecoapp/specimen/add/'>Add A Specimen</a></h2>")
 
     try:
-        pre_existing_measurements = measurement.objects.filter(specimen__exact=specimenID)
+        pre_existing_measurements = measurement.objects.filter(specimen__exact=specimenID, MetricCharacter__element__exact = "Calcaneus")
         if pre_existing_measurements:
             messages.add_message(request, 30, 'You were redirected to the admin because this specimen already has measurements')
             return HttpResponseRedirect("/admin/bovidecoapp/specimen/" + str(specimenID))
@@ -32,7 +32,7 @@ def add_data(request, specimenID=None):
     QS_count = to_measure.count()
     to_measure = json.dumps(list(to_measure))
     addDataFormset = inlineformset_factory(specimen, measurement, can_delete = False, extra = QS_count, exclude=("comments",))
-    formset_bound_to_instance = addDataFormset(instance = theSpecimen)
+    formset_bound_to_instance = addDataFormset(instance = theSpecimen, queryset=measurement.objects.none())
 
     if request.method == 'POST': # If the form has been submitted...
         formset = addDataFormset(instance = theSpecimen, data = request.POST)# A form bound to the POST data
