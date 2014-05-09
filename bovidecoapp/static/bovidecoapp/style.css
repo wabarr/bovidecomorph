@@ -1,14 +1,18 @@
-#mainframe {
-    margin-left:auto;
-    margin-right:auto;
+
+.column-left {
+    float:left;
     width:50%;
-    background-color:#F2F2F2;
-    border-radius:20px;
-    padding:20px;
-    text-align:center;
 }
 
-form {
+.column-right {
+    float:right;
+    width:50%;
+}
+
+
+.entryformcontainer {
+    text-align:center;
+    background-color:#F2F2F2;
     border-style:solid;
     border-width:1px;
     border-radius:5px;

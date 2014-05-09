@@ -9,36 +9,46 @@
     </script>
 </head>
 <body>
+
 <div id="mainframe">
-    <h2>Add Data</h2>
-    <h2>{{ specimen.museum.code }} {{ specimen.collection.code }} {{ specimen.localityNumber }}-{{ specimen.specimenNumber}}{% if specimen.specimenPart %}{{ specimen.specimenPart }}{% endif %}</h2>
-    <h3>{{ specimen.taxon }}</h3>
+    <div class="column-left">
+        <div class="entryformcontainer">
+            <h2>Add Data</h2>
+            <h2>{{ specimen.museum.code }} {{ specimen.collection.code }} {{ specimen.localityNumber }}-{{ specimen.specimenNumber}}{% if specimen.specimenPart %}{{ specimen.specimenPart }}{% endif %}</h2>
+            <h3>{{ specimen.taxon }}</h3>
 
-    {% if messages %}
-        <ul class="messages">
-           {% for message in messages %}
-                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}><h4 class="customMessage">{{ message }}</h4></li>
-           {% endfor %}
-        </ul>
-     {% endif %}
+            {% if messages %}
+                <ul class="messages">
+                   {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}><h4 class="customMessage">{{ message }}</h4></li>
+                   {% endfor %}
+                </ul>
+             {% endif %}
 
-        <form action="/add_data/{{ specimen.id }}/" method="post">{% csrf_token %}
-        {{ formset.management_form }}
+                <form action="/add_data/{{ specimen.id }}/" method="post">{% csrf_token %}
+                {{ formset.management_form }}
 
-        {% for form in formset %}
+                {% for form in formset %}
 
-        <div class="form_row">
-            {{ form.errors.value }}
-            {{ form.as_table }}
-        </div>
+                <div class="form_row">
+                    {{ form.errors.value }}
+                    {{ form.as_table }}
+                </div>
 
-        {% endfor %}
+                {% endfor %}
 
-        <input type="hidden" value="{{ to_measure }}" id = "measurementIDs">
-        <input type="submit" value="submit">
-        </form>
+                <input type="hidden" value="{{ to_measure }}" id = "measurementIDs">
+                <input type="submit" value="submit">
+                </form>
+            </div>
 
+    </div>
+
+    <div class="column-right">
         <img src="/static/bovidecoapp/images/Calcaneus_Measurements_lines.jpg" width="100%">
+    </div>
+
+
 
 </div>
 </body>
