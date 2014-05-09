@@ -54,6 +54,22 @@
             $(selector).val(value.id);
                 });
         $("label").remove();
+
+        //override default behavior when pressing enter
+        //new behavior is to advance tab focus by 2 fields
+        //this makes footpedal caliper measuring easier
+        $("input").keydown( function(e) {
+            if(e.keyCode==13){
+                var form = $("form")
+                var focusable = form.find('input,a,select,button,textarea').filter(':visible');
+                var next = focusable.eq(focusable.index(this)+2);
+                next.focus()
+                return false;
+            }
+
+            });
+
+
         });
 
 
