@@ -119,9 +119,9 @@ class taxonomy(models.Model):
 class museum(models.Model):
 	code = models.CharField(max_length=10)
 	name = models.CharField(max_length=50)
-	contactName = models.CharField(max_length=50,blank="True")
-	contactEmail = models.EmailField(blank="True")
-	contactPhone = models.CharField(max_length=15,blank="True")
+	contactName = models.CharField(max_length=50,blank=True)
+	contactEmail = models.EmailField(blank=True)
+	contactPhone = models.CharField(max_length=15,blank=True)
 	def __unicode__(self):
 		return self.code
 	class Meta:
@@ -155,20 +155,20 @@ class specimen(models.Model):
     taxon = models.ForeignKey(taxonomy)
     museum = models.ForeignKey(museum, default=3)
     collection = models.ForeignKey(collection,default=4)
-    localityPrefix = models.CharField(max_length=5,blank="True")
+    localityPrefix = models.CharField(max_length=5,blank=True)
     localityNumber = models.IntegerField(default=-999)
     specimenNumber = models.IntegerField()
-    specimenPart = models.CharField(max_length=3,blank="True")
-    catalogNumberSearchString = models.CharField(max_length=100,blank="True")
-    barcode = models.IntegerField(blank="True")
-    analyticalUnit = models.CharField(max_length=100,blank="True")
+    specimenPart = models.CharField(max_length=3,blank=True,null=True)
+    catalogNumberSearchString = models.CharField(max_length=100,blank=True)
+    barcode = models.CharField(max_length = 20, blank=True, null=True)
+    analyticalUnit = models.CharField(max_length=100,blank=True)
     description = models.CharField(max_length = 100)
     anatomicalElement = models.CharField(max_length = 100,choices=anatomicalElementChoices,default="astragalus")
-    pathology = models.CharField(max_length = 255,blank="True")
+    pathology = models.CharField(max_length = 255,blank=True)
     astragScanned = models.BooleanField()
     Mesowear = models.BooleanField()
     mesoUpperOrLower = models.CharField(max_length = 10,blank=True,choices=(('upper','upper'),('lower','lower')))
-    scanFilePath = models.CharField(max_length = 255,blank="True")
+    scanFilePath = models.CharField(max_length = 255,blank=True)
     sex = models.CharField(max_length=10,blank=True,choices=(('male','male'),('female','female'),('sex_unk','sexUnknown')))
     ASCII_Trim = models.BooleanField()
     ROUGHORIENT = models.BooleanField()
@@ -244,7 +244,7 @@ class measurement(models.Model):
 	MetricCharacter = models.ForeignKey(MetricCharacter)
 	specimen = models.ForeignKey(specimen)
 	value = models.DecimalField(max_digits = 10, decimal_places = 5)
-	comments = models.CharField(max_length = 100,blank="True")
+	comments = models.CharField(max_length = 100,blank=True)
 	class Meta:
 		db_table = 'measurement'
 		unique_together = (("specimen", "MetricCharacter"),)
@@ -277,7 +277,7 @@ class observation(models.Model):
 	NonMetricCharacter = models.ForeignKey(NonMetricCharacter)
 	specimen = models.ForeignKey(specimen)
 	value = models.CharField(max_length=10,choices=CUSP_RELIEF_CHOICES)
-	comments = models.CharField(max_length = 100,blank="True")
+	comments = models.CharField(max_length = 100,blank=True)
 	class Meta:
 		db_table = 'nonMetricObservation'
 
@@ -292,8 +292,8 @@ CHOICES_KAPP1991HAB=(
 
 class Kapp1991Habitat(models.Model):
 	taxon = models.ForeignKey(taxonomy)
-	habitat = models.CharField(max_length = 15, blank="True", null="True", choices=CHOICES_KAPP1991HAB)
-	verbatimTaxon = models.CharField(max_length = 255, blank="True", null="True")
+	habitat = models.CharField(max_length = 15, blank=True, null=True, choices=CHOICES_KAPP1991HAB)
+	verbatimTaxon = models.CharField(max_length = 255, blank=True, null=True)
 	class Meta:
 		db_table = 'Kapp1991Habitat'
 
@@ -307,8 +307,8 @@ CHOICES_ROBSCOTTHAB=(
 
 class RobScottHabitat(models.Model):
 	taxon = models.ForeignKey(taxonomy)
-	habitat = models.CharField(max_length = 15, blank="True", null="True", choices=CHOICES_ROBSCOTTHAB)
-	verbatimTaxon = models.CharField(max_length = 255, blank="True", null="True")
+	habitat = models.CharField(max_length = 15, blank=True, null=True, choices=CHOICES_ROBSCOTTHAB)
+	verbatimTaxon = models.CharField(max_length = 255, blank=True, null=True)
 	class Meta:
 		db_table = 'RobScottHabitat'
 
@@ -323,22 +323,22 @@ CHOICES_PLUMMERBISHOP2008HAB=(
 
 class Kapp1997Habitat(models.Model):
 	taxon = models.ForeignKey(taxonomy)
-	habitat = models.CharField(max_length = 15, blank="True", null="True", choices=CHOICES_PLUMMERBISHOP2008HAB)
-	verbatimTaxon = models.CharField(max_length = 255, blank="True", null="True")
+	habitat = models.CharField(max_length = 15, blank=True, null=True, choices=CHOICES_PLUMMERBISHOP2008HAB)
+	verbatimTaxon = models.CharField(max_length = 255, blank=True, null=True)
 	class Meta:
 		db_table = 'Kapp1997Habitat'
 
 class PlummerBishop2008Habitat(models.Model):
 	taxon = models.ForeignKey(taxonomy)
-	habitat = models.CharField(max_length = 15, blank="True", null="True", choices=CHOICES_PLUMMERBISHOP2008HAB)
-	verbatimTaxon = models.CharField(max_length = 255, blank="True", null="True")
+	habitat = models.CharField(max_length = 15, blank=True, null=True, choices=CHOICES_PLUMMERBISHOP2008HAB)
+	verbatimTaxon = models.CharField(max_length = 255, blank=True, null=True)
 	class Meta:
 		db_table = 'PlummerBishop2008Habitat'
 
 class Habitat(models.Model):
 	taxon = models.ForeignKey(taxonomy)
-	habitat = models.CharField(max_length = 15, blank="True", null="True", choices=CHOICES_PLUMMERBISHOP2008HAB)
-	verbatimTaxon = models.CharField(max_length = 255, blank="True", null="True")
+	habitat = models.CharField(max_length = 15, blank=True, null=True, choices=CHOICES_PLUMMERBISHOP2008HAB)
+	verbatimTaxon = models.CharField(max_length = 255, blank=True, null=True)
 	ref = models.ForeignKey(reference)
 	class Meta:
 		db_table = 'Habitat'
@@ -355,8 +355,8 @@ CHOICES_KOVAROVICANDREWS2007HAB=(
 
 class KovarovicAndrews2007Habitat(models.Model):
 	taxon = models.ForeignKey(taxonomy)
-	habitat = models.CharField(max_length = 30, blank="True", null="True", choices=CHOICES_KOVAROVICANDREWS2007HAB)
-	verbatimTaxon = models.CharField(max_length = 255, blank="True", null="True")
+	habitat = models.CharField(max_length = 30, blank=True, null=True, choices=CHOICES_KOVAROVICANDREWS2007HAB)
+	verbatimTaxon = models.CharField(max_length = 255, blank=True, null=True)
 	class Meta:
 		db_table = 'KovarovicAndrews2007Habitat'
 
@@ -364,14 +364,14 @@ class KovarovicAndrews2007Habitat(models.Model):
 class allAmnhBovid(models.Model):
 	collectionCode = models.CharField(max_length=10)
 	catalogNum = models.IntegerField()
-	identification = models.CharField(max_length=100,blank="True",null="True")
-	country = models.CharField(max_length=100,blank="True",null="True")
-	state = models.CharField(max_length=100,blank="True",null="True")
-	county = models.CharField(max_length=100,blank="True",null="True")
-	precise_locality = models.CharField(max_length=100,blank="True",null="True")
-	collector = models.CharField(max_length=100,blank="True",null="True")
-	collection_date = models.CharField(max_length=100,blank="True",null="True")
-	preps = models.CharField(max_length=100,blank="True",null="True")
+	identification = models.CharField(max_length=100,blank=True,null=True)
+	country = models.CharField(max_length=100,blank=True,null=True)
+	state = models.CharField(max_length=100,blank=True,null=True)
+	county = models.CharField(max_length=100,blank=True,null=True)
+	precise_locality = models.CharField(max_length=100,blank=True,null=True)
+	collector = models.CharField(max_length=100,blank=True,null=True)
+	collection_date = models.CharField(max_length=100,blank=True,null=True)
+	preps = models.CharField(max_length=100,blank=True,null=True)
 	sex = models.CharField(max_length=10,choices=(('male','male'),('female','female'),('unknown','unknown')))
 	class Meta:
 		db_table = 'allAmnhBovid'
@@ -380,24 +380,24 @@ class allAmnhBovid(models.Model):
 
 class PantheriaBodyMass(models.Model):
 	taxon = models.ForeignKey(taxonomy)
-	bodyMassGrams = models.IntegerField(blank="True",null="True")
+	bodyMassGrams = models.IntegerField(blank=True,null=True)
 	class Meta:
 		db_table = "PantheriaBodyMass"
 
 class ForteliusSolouniasTable1(models.Model):
 	taxon = models.ForeignKey(taxonomy)
-	adhoc_class = models.CharField(max_length=100,blank="True",null="True")
-	n = models.IntegerField(blank="True",null="True")
-	cons =  models.CharField(max_length=100,blank="True",null="True")
-	radi = models.CharField(max_length=100,blank="True",null="True")
-	jad1 = models.CharField(max_length=100,blank="True",null="True")
-	hyp_ind = models.DecimalField(max_digits = 10, decimal_places = 5,blank="True",null="True")
-	perhigh = models.DecimalField(max_digits = 10, decimal_places = 5,blank="True",null="True")
-	persharp = models.DecimalField(max_digits = 10, decimal_places = 5,blank="True",null="True")
-	perround = models.DecimalField(max_digits = 10, decimal_places = 5,blank="True",null="True")
-	perblunt = models.DecimalField(max_digits = 10, decimal_places = 5,blank="True",null="True")
+	adhoc_class = models.CharField(max_length=100,blank=True,null=True)
+	n = models.IntegerField(blank=True,null=True)
+	cons =  models.CharField(max_length=100,blank=True,null=True)
+	radi = models.CharField(max_length=100,blank=True,null=True)
+	jad1 = models.CharField(max_length=100,blank=True,null=True)
+	hyp_ind = models.DecimalField(max_digits = 10, decimal_places = 5,blank=True,null=True)
+	perhigh = models.DecimalField(max_digits = 10, decimal_places = 5,blank=True,null=True)
+	persharp = models.DecimalField(max_digits = 10, decimal_places = 5,blank=True,null=True)
+	perround = models.DecimalField(max_digits = 10, decimal_places = 5,blank=True,null=True)
+	perblunt = models.DecimalField(max_digits = 10, decimal_places = 5,blank=True,null=True)
 	##whether not an African bovid for inclusion in comparative sample
-	AfricanBovid = models.CharField(max_length=100,blank="True",null="True")
+	AfricanBovid = models.CharField(max_length=100,blank=True,null=True)
 	class Meta:
 		db_table = "ForteliusSolounias"
 
