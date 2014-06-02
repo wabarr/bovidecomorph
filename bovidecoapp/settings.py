@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'bovidecoapp',
     'axes',
+    'tastypie',
 )
 
 MIDDLEWARE_CLASSES = (
