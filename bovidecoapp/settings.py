@@ -21,8 +21,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = secrets.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-DEV = False
+DEBUG = secrets.DEBUG
+DEV = secrets.DEV
 
 TEMPLATE_DEBUG = True
 
@@ -39,7 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bovidecoapp',
-    'axes',
+    #'axes',
     'tastypie',
 )
 
@@ -50,7 +50,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'axes.middleware.FailedLoginMiddleware',
+    #'axes.middleware.FailedLoginMiddleware',
 )
 
 ROOT_URLCONF = 'bovidecoapp.urls'
@@ -62,7 +62,7 @@ WSGI_APPLICATION = 'bovidecoapp.wsgi.application'
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
 if DEV:
-    dbPath = os.path.join(BASE_DIR,'bovidecomorph_fortest.db')
+    dbPath = "/Users/wabarr/Desktop/bovidecomorph.db"
 else:
     dbPath = "/home/wabarr/bovidecomorph.db"
 DATABASES = {
