@@ -93,7 +93,7 @@ class taxonomy(models.Model):
     ref = models.ForeignKey(reference)
     Fernandez_Vrba_2005_Name = models.CharField(max_length=255, null=True, blank=True)
     BinindaEmonds_2008_Name = models.CharField(max_length=255, null=True, blank=True)
-    IUCN_ID = models.IntegerField(max_length=255, null=True, blank=True)
+    IUCN_ID = models.IntegerField(max_length=255, null=True, blank=True, unique=True)
 
     def __unicode__(self):
         if str(self.taxonRank).lower() == 'class':
