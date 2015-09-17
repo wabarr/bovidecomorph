@@ -75,46 +75,47 @@ CHOICES_RANK=(
 )
 
 class taxonomy(models.Model):
-	kingdom = models.CharField(max_length=100, null=True, blank=True, choices = CHOICES_KINGDOM, default="Animalia")
-	phylum = models.CharField(max_length=100, null=True, blank=True, choices = CHOICES_PHYLUM, default = "Chordata")
-	tclass = models.CharField(max_length=100, null=True, blank=True, choices = CHOICES_CLASS)
-	order = models.CharField(max_length=100, null=True, blank=True, choices = CHOICES_ORDER)
-	family = models.CharField(max_length=100, null=True, blank=True)
-	subFamily = models.CharField(max_length=100, null=True, blank=True)
-	tribe = models.CharField(max_length=100, null=True, blank=True)
-	genusName = models.CharField(max_length=100, null=True, blank=True)
-	specificEpithet = models.CharField(max_length=100, null=True, blank=True)
-	infraspecificEpithet = models.CharField(max_length=100, null=True, blank=True)
-	identificationQualifier = models.CharField(max_length=100, null=True, blank=True)
-	extant = models.BooleanField()
-	commonName = models.CharField(max_length=100, null=True, blank=True)
-	synonyms = models.CharField(max_length=2000, null=True, blank=True)
-	taxonRank = models.CharField(max_length=100, null=True, blank=False, choices=CHOICES_RANK)
-	ref = models.ForeignKey(reference)
-	Fernandez_Vrba_2005_Name = models.CharField(max_length=255, null=True, blank=True)
-	BinindaEmonds_2008_Name = models.CharField(max_length=255, null=True, blank=True)
+    kingdom = models.CharField(max_length=100, null=True, blank=True, choices = CHOICES_KINGDOM, default="Animalia")
+    phylum = models.CharField(max_length=100, null=True, blank=True, choices = CHOICES_PHYLUM, default = "Chordata")
+    tclass = models.CharField(max_length=100, null=True, blank=True, choices = CHOICES_CLASS)
+    order = models.CharField(max_length=100, null=True, blank=True, choices = CHOICES_ORDER)
+    family = models.CharField(max_length=100, null=True, blank=True)
+    subFamily = models.CharField(max_length=100, null=True, blank=True)
+    tribe = models.CharField(max_length=100, null=True, blank=True)
+    genusName = models.CharField(max_length=100, null=True, blank=True)
+    specificEpithet = models.CharField(max_length=100, null=True, blank=True)
+    infraspecificEpithet = models.CharField(max_length=100, null=True, blank=True)
+    identificationQualifier = models.CharField(max_length=100, null=True, blank=True)
+    extant = models.BooleanField()
+    commonName = models.CharField(max_length=100, null=True, blank=True)
+    synonyms = models.CharField(max_length=2000, null=True, blank=True)
+    taxonRank = models.CharField(max_length=100, null=True, blank=False, choices=CHOICES_RANK)
+    ref = models.ForeignKey(reference)
+    Fernandez_Vrba_2005_Name = models.CharField(max_length=255, null=True, blank=True)
+    BinindaEmonds_2008_Name = models.CharField(max_length=255, null=True, blank=True)
+    IUCN_ID = models.IntegerField(max_length=255, null=True, blank=True)
 
-	def __unicode__(self):
-		if str(self.taxonRank).lower() == 'class':
-			return self.tclass
-		elif str(self.taxonRank).lower() == 'order':
-			return self.order
-		elif str(self.taxonRank).lower() == 'family':
-			return self.family
-		elif str(self.taxonRank).lower() == 'subfamily':
-			return self.subFamily
-		elif str(self.taxonRank).lower() == 'tribe':
-			return self.tribe
-		elif str(self.taxonRank).lower() == 'genus':
-			return self.genusName
-		elif str(self.taxonRank).lower() == 'species':
-			return self.genusName + " " + self.specificEpithet + "  (" + self.commonName + ")"
-		elif str(self.taxonRank).lower() == 'subspecies':
-			return self.genusName + " " + self.specificEpithet + " " + self.infraspecificEpithet + "  (" + self.commonName  + ")"
-		else:
-			return " "
-	class Meta:
-		db_table = 'taxonomy'
+    def __unicode__(self):
+        if str(self.taxonRank).lower() == 'class':
+            return self.tclass
+        elif str(self.taxonRank).lower() == 'order':
+            return self.order
+        elif str(self.taxonRank).lower() == 'family':
+            return self.family
+        elif str(self.taxonRank).lower() == 'subfamily':
+            return self.subFamily
+        elif str(self.taxonRank).lower() == 'tribe':
+            return self.tribe
+        elif str(self.taxonRank).lower() == 'genus':
+            return self.genusName
+        elif str(self.taxonRank).lower() == 'species':
+            return self.genusName + " " + self.specificEpithet + "  (" + self.commonName + ")"
+        elif str(self.taxonRank).lower() == 'subspecies':
+            return self.genusName + " " + self.specificEpithet + " " + self.infraspecificEpithet + "  (" + self.commonName  + ")"
+        else:
+            return " "
+    class Meta:
+        db_table = 'taxonomy'
 
 class museum(models.Model):
 	code = models.CharField(max_length=10)

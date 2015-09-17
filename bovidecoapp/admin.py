@@ -59,9 +59,9 @@ class museumAdmin(admin.ModelAdmin):
 	list_display = ("code","contactName","contactEmail")
 	
 class taxonomyAdmin(admin.ModelAdmin):
-	list_display = ("order","extant","family","subFamily","tribe","genusName","specificEpithet","infraspecificEpithet","commonName","taxonRank","Fernandez_Vrba_2005_Name","BinindaEmonds_2008_Name")
+	list_display = ("order","extant","family","subFamily","tribe","genusName","specificEpithet","infraspecificEpithet","commonName","taxonRank","IUCN_ID","Fernandez_Vrba_2005_Name","BinindaEmonds_2008_Name")
 	list_filter = ['taxonRank','extant']
-	list_editable = ['extant','tribe']
+	list_editable = ['extant','tribe',"IUCN_ID"]
 	search_fields = ['family','subFamily','tribe','genusName','specificEpithet','synonyms']
 	fieldsets = (
 		('', {
